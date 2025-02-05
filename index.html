@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetShop - Produtos para seu Pet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Reset básico */
         * {
@@ -19,49 +20,44 @@
             color: #333;
         }
 
-        /* Estilos do menu */
+        /* Menu superior */
         nav {
-            background: #003366;
-            padding: 10px 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            background-color: #003366;
+            padding: 10px 20px;
+            text-align: center;
         }
 
         nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            list-style-type: none;
         }
 
         nav ul li {
+            display: inline;
             margin: 0 15px;
         }
 
         nav ul li a {
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background 0.3s ease, color 0.3s ease;
+            font-size: 1.2rem;
         }
 
         nav ul li a:hover {
-            background: rgba(255, 255, 255, 0.1);
+            text-decoration: underline;
         }
 
         /* Estilos do cabeçalho com banner */
         header {
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 100px 20px;
-            background-image: url('https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'); /* Imagem de banner */
+            background-image: url('https://images.unsplash.com/photo-1534361960057-19889db9621e?fit=crop&w=1950&h=1000&q=80');
             background-size: cover;
             background-position: center;
             color: #fff;
             position: relative;
+            text-align: center;
         }
 
         header::before {
@@ -71,7 +67,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay escuro para melhorar a legibilidade */
+            background: rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
@@ -87,13 +83,14 @@
             animation: fadeIn 3s ease-in-out;
             position: relative;
             z-index: 1;
+            margin-left: 1cm; /* Movido 1 cm para a direita */
         }
 
         /* Estilos dos produtos */
         .produtos {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
             padding: 20px;
         }
 
@@ -101,11 +98,10 @@
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 15px;
-            width: 250px;
-            text-align: center;
             padding: 20px;
+            text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .produto:hover {
@@ -162,15 +158,31 @@
             margin: 0;
         }
 
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        footer ul li a:hover {
+            text-decoration: underline;
+        }
+
         /* Animações */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         /* Responsividade */
@@ -187,122 +199,156 @@
                 width: 100%;
                 margin: 10px 0;
             }
+        }
 
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
+        /* Estilos para o ícone do WhatsApp */
+        .whatsapp {
+            position: absolute;
+            top: 190px;
+            right: 20px;
+            background-color: transparent;
+            color: #25d366;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 60px;
+            transition: transform 0.3s ease;
+            animation: floating 2s ease-in-out infinite;
+        }
 
-            nav ul li {
-                margin: 5px 0;
-            }
+        .whatsapp:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animação de flutuação para o ícone */
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Estilo do ícone de promoção */
+        .promo-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
         }
     </style>
 </head>
 <body>
-    <!-- Menu de navegação -->
+    <!-- Menu superior -->
     <nav>
         <ul>
-            <li><a href="#roupas">Roupas</a></li>
-            <li><a href="#acessorios">Acessórios</a></li>
-            <li><a href="#perfumaria">Perfumaria</a></li>
-            <li><a href="#comidinhas">Comidinhas</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Contato</a></li>
         </ul>
     </nav>
 
     <!-- Cabeçalho com banner -->
     <header>
-        <h1>PetShop</h1>
-        <p>Tudo o que seu pet precisa em um só lugar!</p>
+        <div>
+            <h1>PetShop</h1>
+            <p>Tudo o que seu pet precisa em um só lugar!</p>
+        </div>
+        <!-- Ícone de WhatsApp -->
+        <a href="https://wa.me/1234567890" class="whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </header>
 
     <!-- Seção de Produtos -->
     <section class="produtos">
-        <div class="produto" id="produto1">
-            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Roupa para Cachorro">
+        <!-- Produtos existentes com 5 removidos e ícones de promoção adicionados -->
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Roupa para Cachorro">
             <h3>Roupa para Cachorro</h3>
             <p>Roupa confortável e estilosa para seu pet.</p>
             <p class="preco">R$ 49,90</p>
             <button>Comprar</button>
+            <div class="promo-icon">Promoção</div>
         </div>
-        <div class="produto" id="produto2">
-            <img src="https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Coleira Elegante">
-            <h3>Coleira Elegante</h3>
-            <p>Coleira ajustável e resistente.</p>
-            <p class="preco">R$ 29,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Brinquedo para Cães">
+            <h3>Brinquedo para Cães</h3>
+            <p>Brinquedo resistente e seguro para seu cãozinho.</p>
+            <p class="preco">R$ 35,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto3">
-            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Shampoo para Pets">
-            <h3>Shampoo para Pets</h3>
-            <p>Shampoo suave e perfumado.</p>
-            <p class="preco">R$ 19,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Alimento Premium para Cães">
+            <h3>Alimento Premium para Cães</h3>
+            <p>Nutrição balanceada para o seu pet.</p>
+            <p class="preco">R$ 120,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto4">
-            <img src="https://images.unsplash.com/photo-1591871937573-74dbba515c4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Biscoito para Cães">
-            <h3>Biscoito para Cães</h3>
-            <p>Biscoito saudável e saboroso.</p>
-            <p class="preco">R$ 14,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Coleira para Cães">
+            <h3>Coleira para Cães</h3>
+            <p>Coleira resistente e confortável para passeios.</p>
+            <p class="preco">R$ 30,00</p>
+            <button>Comprar</button>
+            <div class="promo-icon">Promoção</div>
+        </div>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Ração para Gatos">
+            <h3>Ração para Gatos</h3>
+            <p>Alimento nutritivo e saboroso para o seu felino.</p>
+            <p class="preco">R$ 60,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto5">
-            <img src="https://images.unsplash.com/photo-1591872203534-1fcb2355b04a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Cama para Gatos">
-            <h3>Cama para Gatos</h3>
-            <p>Cama macia e aconchegante.</p>
-            <p class="preco">R$ 89,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Caixa de Transporte">
+            <h3>Caixa de Transporte</h3>
+            <p>Ideal para viagens e passeios com segurança.</p>
+            <p class="preco">R$ 100,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto6">
-            <img src="https://images.unsplash.com/photo-1591884179030-3665d8e6a925?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Brinquedo para Pets">
-            <h3>Brinquedo para Pets</h3>
-            <p>Brinquedo divertido e seguro.</p>
-            <p class="preco">R$ 24,90</p>
+        <!-- Novos produtos -->
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Cama para Cachorro">
+            <h3>Cama para Cachorro</h3>
+            <p>Conforto para o descanso do seu pet.</p>
+            <p class="preco">R$ 120,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto7">
-            <img src="https://images.unsplash.com/photo-1591884179030-3665d8e6a925?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Arranhador para Gatos">
-            <h3>Arranhador para Gatos</h3>
-            <p>Arranhador durável e funcional.</p>
-            <p class="preco">R$ 59,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Ração para Peixes">
+            <h3>Ração para Peixes</h3>
+            <p>Alimento ideal para manter a saúde dos seus peixes.</p>
+            <p class="preco">R$ 25,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto8">
-            <img src="https://images.unsplash.com/photo-1591884179030-3665d8e6a925?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Ração Premium">
-            <h3>Ração Premium</h3>
-            <p>Ração nutritiva e balanceada.</p>
-            <p class="preco">R$ 99,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Petiscos para Cães">
+            <h3>Petiscos para Cães</h3>
+            <p>Deliciosos petiscos para agradar seu cãozinho.</p>
+            <p class="preco">R$ 20,00</p>
             <button>Comprar</button>
         </div>
-        <div class="produto" id="produto9">
-            <img src="https://images.unsplash.com/photo-1591884179030-3665d8e6a925?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Tapete Higiênico">
-            <h3>Tapete Higiênico</h3>
-            <p>Tapete absorvente e prático.</p>
-            <p class="preco">R$ 39,90</p>
-            <button>Comprar</button>
-        </div>
-        <div class="produto" id="produto10">
-            <img src="https://images.unsplash.com/photo-1591884179030-3665d8e6a925?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Comedouro Automático">
-            <h3>Comedouro Automático</h3>
-            <p>Comedouro inteligente e funcional.</p>
-            <p class="preco">R$ 129,90</p>
+        <div class="produto">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?crop=entropy&cs=tinysrgb&fit=max&ixid=MnwzNjY1OXwwfDF8c2VhcmNofDE5fHByb2R1Y3R8ZW58MHx8fHwxNjc5fHxhJ3s6S6" alt="Escova para Gatos">
+            <h3>Escova para Gatos</h3>
+            <p>Escova especial para manter o pelo do seu gato saudável.</p>
+            <p class="preco">R$ 15,00</p>
             <button>Comprar</button>
         </div>
     </section>
 
     <!-- Rodapé -->
     <footer>
-        <p>&copy; 2023 PetShop. Todos os direitos reservados.</p>
+        <p>&copy; 2025 PetShop | Todos os direitos reservados</p>
+        <ul>
+            <li><a href="#">Sobre nós</a></li>
+            <li><a href="#">Trocas e Reclamações</a></li>
+            <li><a href="#">Seja um Franqueado</a></li>
+ <li><a href="#">Lojas Físicas</a></li>
+        </ul>
     </footer>
-
-    <!-- JavaScript para animações -->
-    <script>
-        // Adiciona animação de flutuação aos produtos
-        const produtos = document.querySelectorAll('.produto');
-        produtos.forEach((produto, index) => {
-            produto.style.animation = `float 3s ease-in-out ${index * 0.2}s infinite`;
-        });
-    </script>
 </body>
 </html>
